@@ -20,7 +20,7 @@ const MovieType = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         genre: { type: new GraphQLNonNull(GraphQLString) },
         watched: { type: new GraphQLNonNull(GraphQLBoolean) },
-        rate: { type: GraphQLString },
+        rate: { type: GraphQLInt },
         director: {
             type: DirectorType,
             resolve(parent, args) {
@@ -106,7 +106,7 @@ const Mutation = new GraphQLObjectType({
                 genre: { type: GraphQLString },
                 directorId: { type: GraphQLID },
                 watched: { type: GraphQLBoolean },
-                rate: { type: GraphQLString }
+                rate: { type: GraphQLInt }
             },
             resolve(parrent, {name, genre, directorId, watched, rate}) {
                 const movie = new Movies({
@@ -157,7 +157,7 @@ const Mutation = new GraphQLObjectType({
                 genre: { type: new GraphQLNonNull(GraphQLString) },
                 directorId: { type: GraphQLID },
                 watched: { type: GraphQLBoolean },
-                rate: { type: GraphQLString }
+                rate: { type: GraphQLInt }
             },
             resolve(parrent, {id, name, genre, directorId, watched, rate}) {
                 return Movies.findByIdAndUpdate(

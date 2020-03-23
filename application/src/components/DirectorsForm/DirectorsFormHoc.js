@@ -1,6 +1,21 @@
 import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
+import { graphql } from "react-apollo";
 
 import { styles } from './styles';
 
-export default compose(withStyles(styles));
+import { addDirectorMutation } from "./mutations";
+import { directorsQuery } from "../DirectorsTable/queries";
+
+const widtGraphqlAdd = graphql(addDirectorMutation, {
+   props: ( { mutate } ) => ({
+      addDirector: director => mutate({
+          variables: director,
+          refetchQueries: [{ query: directorsQuery }]
+      }),
+   }),
+});
+
+
+
+export default compose(withStyles(styles), widtGraphqlAdd);
