@@ -7,3 +7,11 @@ export const addMovieMutation = gql`
         }
     }
 `;
+
+export const updateMovieMutation = gql`
+    mutation updateMovieMutation($id: ID, $name: String!, $genre: String!, $watched: Boolean!, $rate: Int, $directorId: ID) {
+        updateMovie(id: $id, name: $name, genre: $genre, watched: $watched, rate: $rate, directorId: $directorId) {
+            name
+        }
+    }
+`;

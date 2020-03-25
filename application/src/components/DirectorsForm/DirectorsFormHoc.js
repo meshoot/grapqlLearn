@@ -4,18 +4,26 @@ import { graphql } from "react-apollo";
 
 import { styles } from './styles';
 
-import { addDirectorMutation } from "./mutations";
+import { addDirectorMutation, updateDirector } from "./mutations";
 import { directorsQuery } from "../DirectorsTable/queries";
 
-const widtGraphqlAdd = graphql(addDirectorMutation, {
-   props: ( { mutate } ) => ({
-      addDirector: director => mutate({
-          variables: director,
-          refetchQueries: [{ query: directorsQuery }]
-      }),
-   }),
-});
+const withGraphQl = compose(
+    graphql(addDirectorMutation, {
+        props: ( { mutate } ) => ({
+            addDirector: director => mutate({
+                variables: director,
+                refetchQueries: [{ query: directorsQuery }]
+            }),
+        }),
+    }),
+    graphql(updateDirector, {
+        props: ( { mutate } ) => ({
+            updateDirector: director => mutate({
+                variables: director,
+                refetchQueries: [{ query: directorsQuery }]
+            }),
+        }),
+    })
+);
 
-
-
-export default compose(withStyles(styles), widtGraphqlAdd);
+export default compose(withStyles(styles), withGraphQl);

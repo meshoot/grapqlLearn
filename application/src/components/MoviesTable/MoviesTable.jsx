@@ -70,26 +70,26 @@ class MoviesTable extends React.Component {
             <TableBody>
               {movies.map(movie => {
                 return (
-                  <TableRow key={movie.id}>
-                    <TableCell component="th" scope="row">{movie.name}</TableCell>
-                    <TableCell>{movie.genre}</TableCell>
-                    <TableCell align="right">{movie.rate}</TableCell>
-                    <TableCell>{movie.director.name}</TableCell>
-                    <TableCell>
-                      <Checkbox checked={movie.watched} disabled />
-                    </TableCell>
-                    <TableCell align="right">
-                      <>
-                        <IconButton color="inherit" onClick={(e) => this.handleClick(e, movie)}>
-                          <MoreIcon />
-                        </IconButton>
-                        <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose} >
-                          <MenuItem onClick={this.handleEdit}><CreateIcon /> Edit</MenuItem>
-                          <MenuItem onClick={this.handleDelete}><DeleteIcon/> Delete</MenuItem>
-                        </Menu>
-                      </>
-                    </TableCell>
-                  </TableRow>
+                    <TableRow key={movie.id}>
+                      <TableCell component="th" scope="row">{movie.name}</TableCell>
+                      <TableCell>{movie.genre}</TableCell>
+                      <TableCell align="right">{movie.rate}</TableCell>
+                      <TableCell>{movie.director && movie.director.name}</TableCell>
+                      <TableCell>
+                        <Checkbox checked={movie.watched} disabled />
+                      </TableCell>
+                      <TableCell align="right">
+                        <>
+                          <IconButton color="inherit" onClick={(e) => this.handleClick(e, movie)}>
+                            <MoreIcon />
+                          </IconButton>
+                          <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose} >
+                            <MenuItem onClick={this.handleEdit}><CreateIcon /> Edit</MenuItem>
+                            <MenuItem onClick={this.handleDelete}><DeleteIcon/> Delete</MenuItem>
+                          </Menu>
+                        </>
+                      </TableCell>
+                    </TableRow>
                 );
               })}
             </TableBody>

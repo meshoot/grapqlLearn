@@ -156,7 +156,7 @@ const Mutation = new GraphQLObjectType({
                 name: { type: new GraphQLNonNull(GraphQLString) },
                 genre: { type: new GraphQLNonNull(GraphQLString) },
                 directorId: { type: GraphQLID },
-                watched: { type: GraphQLBoolean },
+                watched: { type: new GraphQLNonNull(GraphQLBoolean) },
                 rate: { type: GraphQLInt }
             },
             resolve(parrent, {id, name, genre, directorId, watched, rate}) {
